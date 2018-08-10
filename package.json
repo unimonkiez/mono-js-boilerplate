@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unimonkiez/mono-js-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "Yuval Saraf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unimonkiez/mono-js-boilerplate/issues"
+  },
+  "homepage": "https://github.com/unimonkiez/mono-js-boilerplate#readme",
+  "scripts": {
+    "build": "lerna run build",
+    "start": "yarn workspace client run start:all",
+    "typecheck": "lerna run typecheck",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:err": "npm run lint -- --quiet",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:report": "npm run lint -- --format html -o ./report.html"
+  },
+  "devDependencies": {
+    "lerna": "^3.0.0-beta.21",
+    "tslib": "^1.9.3"
+  }
+}

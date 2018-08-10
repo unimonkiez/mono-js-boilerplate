@@ -1,0 +1,31 @@
+image: node:8.9.4
+
+stages:
+  - install
+  - test
+
+installation:
+  stage: install
+  script:
+    - yarn install
+  artifacts:
+    paths:
+      - ./node_modules
+      - ./client/node_modules
+      - ./server/node_modules
+      - ./scripts/node_modules
+    expire_in: 1 day
+
+lint:
+  stage: test
+  dependencies:
+    - installation
+  script:
+    - yarn run lint:err
+
+typecheck:
+  stage: test
+  dependencies:
+    - installation
+  script:
+    - yarn run typecheck

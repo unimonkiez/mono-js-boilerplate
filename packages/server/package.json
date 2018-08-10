@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./bin/run-build",
+    "start": "node ./bin/start",
+    "typecheck": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.12",
+    "express-session": "^1.15.2",
+    "graphql": "^0.13.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/express-graphql": "^0.6.1",
+    "@types/graphql": "^0.13.3",
+    "mime": "^2.3.1",
+    "scripts": "1.0.0",
+    "typeorm": "^0.2.7"
+  }
+}
