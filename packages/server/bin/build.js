@@ -8,7 +8,6 @@ module.exports = new Build({
   rootPath,
   version: packageJson.version,
   isClient: false,
-  emitDts: false,
   entry: {
     app: path.resolve(rootPath, 'src', 'index'),
   },

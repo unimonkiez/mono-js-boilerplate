@@ -15,7 +15,6 @@ const getWebpackConfig = ({
   bail = false,
   rootPath = process.cwd(),
   version = 'VERSION',
-  emitDts = true,
 } = {}) => {
   const entryPrefix = `app${isProd ? '.min' : ''}`;
   const entries = typeof entry === 'string' ? { [entryPrefix]: entry } : entry;
@@ -88,6 +87,7 @@ const getWebpackConfig = ({
       libraryTarget: 'umd',
     },
     plugins: [
+      new TsDeclarationWebpackPlugin(),
       new webpack.DefinePlugin(Object.assign({
         __PROD__: isClient ? JSON.stringify(isProd) : 'process.env.NODE_ENV',
         __DEV__: isClient ? JSON.stringify(!isProd) : '!process.env.NODE_ENV',
@@ -100,7 +100,6 @@ const getWebpackConfig = ({
         },
       } : {})),
     ]
-      .concat(emitDts ? new TsDeclarationWebpackPlugin() : [])
       .concat(isClient ? [
         new HtmlWebpackPlugin({
           minify: {},

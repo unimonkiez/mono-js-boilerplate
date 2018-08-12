@@ -42,7 +42,6 @@ module.exports = class Build {
       outputDir,
       version,
       isProd,
-      emitDts,
     } = Object.assign({}, this.params, params);
 
     await new Promise((res, rej) => {
@@ -54,7 +53,6 @@ module.exports = class Build {
         version,
         entry,
         outputDir,
-        emitDts,
       });
 
       const cb = (err, stats) => {

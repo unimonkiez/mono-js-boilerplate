@@ -1,5 +1,8 @@
 import createApp from '../create-app';
 import { connectToApp } from './schema/index';
+import './globals.d';
+import './json-module.d';
+import './pem-module.d';
 
 const app = createApp();
 connectToApp(app);

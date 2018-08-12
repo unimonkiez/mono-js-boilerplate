@@ -10,5 +10,4 @@ module.exports = new Build({
   isClient: true,
   entry: path.resolve(rootPath, 'src', 'index'),
   outputDir: path.resolve(__dirname, '..', 'dist'),
-  emitDts: false,
 });
