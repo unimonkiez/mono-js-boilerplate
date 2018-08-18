@@ -14,13 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/history": "^4.6.2",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
-    "apollo-boost": "^0.1.12",
-    "computed-async-mobx": "^4.1.0",
-    "history": "^4.7.2",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
     "mobx-router": "^0.0.13",
@@ -30,7 +26,6 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
-    "cli": "1.0.0",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
