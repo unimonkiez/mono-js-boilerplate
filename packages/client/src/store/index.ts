@@ -13,7 +13,7 @@ export class Store {
     startRouter(this);
   }
 
-  @action setName(name: string) {
+  @action setName = (name: string) => {
     this.name = name;
   }
 
