@@ -1,5 +1,5 @@
 import { observable, computed, action } from 'mobx';
-import { Router } from './router';
+import { Router, start as startRouter } from './router';
 
 export class Store {
   @observable
@@ -10,6 +10,7 @@ export class Store {
 
   constructor() {
     this.router = new Router();
+    startRouter(this);
   }
 
   @action setName(name: string) {

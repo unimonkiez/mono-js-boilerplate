@@ -23,18 +23,19 @@
     "history": "^4.7.2",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
+    "mobx-router": "^0.0.13",
     "mobx-utils": "^5.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
+    "cli": "1.0.0",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "react-hot-loader": "^4.3.4",
     "scripts": "1.0.0",
-    "cli": "1.0.0",
     "server": "1.0.0"
   }
 }
