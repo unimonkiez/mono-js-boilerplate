@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TsDeclarationWebpackPlugin = require('ts-declaration-webpack-plugin');
+// const TsDeclarationWebpackPlugin = require('ts-declaration-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const defaultExtensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -87,7 +88,8 @@ const getWebpackConfig = ({
       libraryTarget: 'umd',
     },
     plugins: [
-      new TsDeclarationWebpackPlugin(),
+      new VueLoaderPlugin(),
+      // new TsDeclarationWebpackPlugin(),
       new webpack.DefinePlugin(Object.assign({
         __PROD__: isClient ? JSON.stringify(isProd) : 'process.env.NODE_ENV',
         __DEV__: isClient ? JSON.stringify(!isProd) : '!process.env.NODE_ENV',
@@ -189,6 +191,25 @@ const getWebpackConfig = ({
                   ),
                 },
               ),
+            ],
+          },
+          {
+            test: /\.vue$/,
+            use: [
+              {
+                loader: 'vue-loader',
+              },
+            ],
+          },
+          {
+            test: /\.css$/,
+            use: [
+              {
+                loader: 'vue-style-loader',
+              },
+              {
+                loader: 'css-loader',
+              },
             ],
           },
           {

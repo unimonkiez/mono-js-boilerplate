@@ -23,7 +23,8 @@
     "mobx-utils": "^5.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "express-graphql": "^0.6.12",
