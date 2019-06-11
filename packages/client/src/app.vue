@@ -6,7 +6,9 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
+  bla: 1,
+  methods: 1,
 };
 </script>
 

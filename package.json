@@ -21,7 +21,7 @@
     "build": "lerna run build",
     "start": "yarn workspace client run start:all",
     "typecheck": "lerna run typecheck",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue .",
     "lint:err": "npm run lint -- --quiet",
     "lint:fix": "npm run lint -- --fix",
     "lint:report": "npm run lint -- --format html -o ./report.html"

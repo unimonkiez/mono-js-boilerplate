@@ -45,6 +45,22 @@
           "jsx": false
         }
       }
+    }, {
+      "files": [
+        "*.vue"
+      ],
+      "parser": "vue-eslint-parser",
+      "plugins": [ "vue" ],
+      "rules": {
+      }
+    }, {
+      "files": [
+        "*.ts.vue"
+      ],
+      "parserOptions": {
+        "parser": "typescript-eslint-parser",
+        "plugins": [ "typescript" ]
+      }
     }
   ]
 }

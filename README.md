@@ -6,6 +6,7 @@
   * Webpack
     * typescript
     * babel
+    * vue
   * All devtools in package `scripts`, less dirt
   * Clinet
     * React
@@ -30,10 +31,11 @@
 * `npm run typecheck` - Run typechecking on project.
 
 ### Known issues
+* `.vue` files written with typescript should have `.ts.vue` as well as `<script lang="ts"> ... </script>` tag.
 * Eslint works from the command lint, but if you want it to work with VsCode, add these to your `User settings`:
   ```json
     "eslint.options": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
     },
     "eslint.validate": [
         {
@@ -50,6 +52,10 @@
         },
         {
             "language": "typescriptreact",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
             "autoFix": true
         }
     ]
