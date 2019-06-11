@@ -6,12 +6,10 @@
   * Webpack
     * typescript
     * babel
-    * vue
   * All devtools in package `scripts`, less dirt
   * Clinet
-    * React
+    * Vue
     * Mobx
-    * Router
   * Server
     * Mock server
     * Graphql
