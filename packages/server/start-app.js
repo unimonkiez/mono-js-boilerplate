@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 // eslint-disable-next-line import/no-unresolved
-const app = require('./dist/app');
+const app = require('./dist/app').default;
 
 const staticPath = path.join(__dirname, 'dist', 'client');
 const port = process.env.PORT;

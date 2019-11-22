@@ -7,7 +7,7 @@ import './pem-module.d';
 const app = createApp();
 connectToApp(app);
 
-module.exports = {
+export default {
   app,
   async connect() {
     // Connect to db

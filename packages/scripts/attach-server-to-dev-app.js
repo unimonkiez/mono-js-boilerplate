@@ -16,7 +16,7 @@ module.exports = ({
         if (!err) {
           // Will import the app after it is compiled by webpack
           // eslint-disable-next-line global-require,import/no-unresolved,import/no-dynamic-require
-          const nextServerModule = require(appPath);
+          const nextServerModule = require(appPath).default;
           delete require.cache[require.resolve(appPath)];
 
           if (serverModule) {
