@@ -22,8 +22,8 @@
   "devDependencies": {
     "@types/express-graphql": "^0.6.1",
     "@types/graphql": "^0.13.3",
+    "common": "1.0.0",
     "mime": "^2.3.1",
-    "scripts": "1.0.0",
-    "typeorm": "^0.2.7"
+    "scripts": "1.0.0"
   }
 }
