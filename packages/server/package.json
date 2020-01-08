@@ -13,15 +13,18 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "class-validator": "^0.11.0",
     "express": "^4.15.2",
     "express-graphql": "^0.6.12",
     "express-session": "^1.15.2",
-    "graphql": "^0.13.2",
+    "graphql": "^14.5.8",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^0.17.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/express-graphql": "^0.6.1",
-    "@types/graphql": "^0.13.3",
+    "@types/graphql": "^14.5.0",
     "common": "1.0.0",
     "mime": "^2.3.1",
     "scripts": "1.0.0"

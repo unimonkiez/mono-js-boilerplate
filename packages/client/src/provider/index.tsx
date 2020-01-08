@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import MobixProvider from './mobx-react/provider';
+import React from 'react';
+import { ApolloProvider } from './apollo';
 
-
-interface ProviderProps {
-  children: JSX.Element
+interface IProviderProps {
+  children?: JSX.Element
 }
 
-export default class Provider extends Component<ProviderProps> {
-  render() {
-    const { children } = this.props;
-    return (
-      <MobixProvider>
-        {children}
-      </MobixProvider>
-    );
-  }
-}
+export const Provider = ({ children }: IProviderProps) => (
+  <ApolloProvider>
+    {children}
+  </ApolloProvider>
+);

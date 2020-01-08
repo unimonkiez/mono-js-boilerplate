@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TsDeclarationWebpackPlugin = require('ts-declaration-webpack-plugin');
+// const TsDeclarationWebpackPlugin = require('ts-declaration-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 const defaultExtensions = ['.js', '.jsx', '.ts', '.tsx'];
+const excludeFromLoaders = /node_modules/;
+const packageNames = fs.readdirSync(path.resolve(__dirname, '..'));
 
 const getWebpackConfig = ({
   entry,
@@ -60,7 +63,7 @@ const getWebpackConfig = ({
     obj,
     {
       [entryKey]: []
-        .concat(isWebpackDevServer ? ['webpack-hot-middleware/client'] : [])
+        .concat((isClient && isWebpackDevServer) ? ['webpack-hot-middleware/client'] : [])
         .concat(entries[entryKey]),
     },
   ), {});
@@ -87,7 +90,7 @@ const getWebpackConfig = ({
       libraryTarget: 'umd',
     },
     plugins: [
-      new TsDeclarationWebpackPlugin(),
+      // new TsDeclarationWebpackPlugin(),
       new webpack.DefinePlugin(Object.assign({
         __PROD__: isClient ? JSON.stringify(isProd) : 'process.env.NODE_ENV',
         __DEV__: isClient ? JSON.stringify(!isProd) : '!process.env.NODE_ENV',
@@ -107,7 +110,7 @@ const getWebpackConfig = ({
           inject: 'body',
         }),
       ] : [])
-      .concat(isWebpackDevServer ? [
+      .concat((isClient && isWebpackDevServer) ? [
         new webpack.HotModuleReplacementPlugin(),
       ] : []),
     optimization: {
@@ -118,12 +121,12 @@ const getWebpackConfig = ({
         .concat([
           {
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: excludeFromLoaders,
             use: [babelBase],
           },
           {
             test: /\.jsx$/,
-            exclude: /node_modules/,
+            exclude: excludeFromLoaders,
             use: [
               Object.assign(
                 {},
@@ -137,7 +140,7 @@ const getWebpackConfig = ({
                         .concat(babelBase.options.presets)
                         .concat('@babel/preset-react'),
                       plugins: babelBase.options.plugins
-                        .concat(isWebpackDevServer ? ['react-hot-loader/babel'] : []),
+                        .concat((isClient && isWebpackDevServer) ? ['react-hot-loader/babel'] : []),
                     },
                   ),
                 },
@@ -146,7 +149,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.ts$/,
-            exclude: /node_modules/,
+            exclude: excludeFromLoaders,
             use: [
               Object.assign(
                 {},
@@ -159,6 +162,8 @@ const getWebpackConfig = ({
                       presets: []
                         .concat(babelBase.options.presets)
                         .concat('@babel/preset-typescript'),
+                      plugins: babelBase.options.plugins
+                        .concat('babel-plugin-transform-typescript-metadata'),
                     },
                   ),
                 },
@@ -167,7 +172,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.tsx$/,
-            exclude: /node_modules/,
+            exclude: excludeFromLoaders,
             use: [
               Object.assign(
                 {},
@@ -184,7 +189,8 @@ const getWebpackConfig = ({
                           '@babel/preset-typescript',
                         ]),
                       plugins: babelBase.options.plugins
-                        .concat(isWebpackDevServer ? ['react-hot-loader/babel'] : []),
+                        .concat('babel-plugin-transform-typescript-metadata')
+                        .concat((isClient && isWebpackDevServer) ? ['react-hot-loader/babel'] : []),
                     },
                   ),
                 },
@@ -193,6 +199,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.html$/,
+            exclude: excludeFromLoaders,
             use: [
               {
                 loader: 'html-loader',
@@ -207,6 +214,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.ttf$/,
+            exclude: excludeFromLoaders,
             use: [
               {
                 loader: 'ttf-loader',
@@ -218,6 +226,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.svg$/,
+            exclude: excludeFromLoaders,
             use: [
               {
                 loader: path.resolve(__dirname, 'loader', 'svg'),
@@ -229,6 +238,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.pem$/,
+            exclude: excludeFromLoaders,
             use: [
               {
                 loader: 'raw-loader',
@@ -237,6 +247,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.mp3$/,
+            exclude: excludeFromLoaders,
             use: [
               {
                 loader: path.resolve(__dirname, 'loader', 'sound'),
@@ -252,6 +263,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.(gif|png|jpg)$/,
+            exclude: excludeFromLoaders,
             issuer: /\.html$/,
             use: [
               {
@@ -264,6 +276,7 @@ const getWebpackConfig = ({
           },
           {
             test: /\.(gif|png|jpg)$/,
+            exclude: excludeFromLoaders,
             issuer: file => (!/\.html$/.test(file)),
             use: [
               {
@@ -286,7 +299,10 @@ const getWebpackConfig = ({
       ],
     },
     externals: []
-      .concat(isClient ? [] : [nodeExternals({ modulesDir: path.join(__dirname, '..', '..', 'node_modules') })])
+      .concat(isClient ? [] : [nodeExternals({
+        modulesDir: path.join(__dirname, '..', '..', 'node_modules'),
+        whitelist: packageNames,
+      })])
       .concat((context, request, callback) => {
         if (!path.isAbsolute(request)) {
           const relativeRequest = path.join(path.relative(rootPath, context), request)

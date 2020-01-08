@@ -1,9 +1,11 @@
 import graphqlHTTP from 'express-graphql';
-import { Schema } from './schema';
+import { getSchema } from './schema';
 
-export const connectToApp = (app) => {
+export const connectToApp = async (app, context) => {
+  const schema = await getSchema();
   app.use('/graphql', graphqlHTTP({
-    schema: Schema,
-    graphiql: __DEV__,
+    schema,
+    context,
+    graphiql: true,
   }));
 };

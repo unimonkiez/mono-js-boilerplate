@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Provider from 'src/provider';
-import { MobxRouter } from 'mobx-router';
+import { Provider } from 'src/provider';
+import { Router } from './router';
 
 export default class App extends Component {
   render() {
     return (
       <Provider>
-        <MobxRouter />
+        <Router />
       </Provider>
     );
   }
